@@ -7,11 +7,26 @@ class Timer {
       // listens for the click on the play button
       // when clicked, call start method
       this.startButton.addEventListener('click', this.start);
+      this.pauseButton.addEventListener('click', this.pause);
    }
 
-   start(){
-      console.log("time to start timer");
-   }
+   start = () => {
+      this.tick();
+      // takes in reference to the function to invoke
+      // 2nd parameter is how often to run that function
+      // will run this.tick every second
+      this.interval = setInterval(this.tick, 1000);
+   };
+
+   pause = () => {
+      clearInterval(this.interval);
+   };
+
+   tick = () => {
+      console.log('tick');
+   };
+
+   
 }
 
 const durationInput = document.querySelector('#duration');
@@ -21,3 +36,6 @@ const pauseButton = document.querySelector('#pause');
 // create new instance of Timer //
 const timer = new Timer(durationInput, startButton, pauseButton);
 // Timer class automatically sets up the event listener //
+
+
+
